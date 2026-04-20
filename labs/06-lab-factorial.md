@@ -4,6 +4,15 @@ The aim of this lab is to practice using both flow of control and iteration stru
 
 ---
 
+## Hints and Tips
+
+- Keep validation and calculation separated in your code.
+- Treat `0` as a special case (`0! = 1`).
+- Use a loop accumulator variable (commonly `factorial = 1`).
+- Validate input before converting with `int()`.
+
+---
+
 ## Calculating the Factorial of a Number
 
 Write a program that can find the factorial of any given number.
@@ -26,11 +35,16 @@ Write a program that can find the factorial of any given number.
 
 1. Write code to ask the user to enter the number for which the factorial will be calculated. For example:
 
+   <details>
+   <summary>Example starter code</summary>
+
    ```python
    print('Starting factorial calculation program')
    number = input('Please input the number: ')
    print(f'The number to calculate factorial for is {number}')
    ```
+
+   </details>
 
 2. Save the file and run it to verify that it works correctly.
 
@@ -48,12 +62,17 @@ Write a program that can find the factorial of any given number.
 
 1. Use the `isnumeric()` method to check if the input is a number. If it’s not a number, notify the user.
 
+   <details>
+   <summary>Example validation block</summary>
+
    ```python
    if number.isnumeric():
        print(f'The number to calculate factorial for is {number}')
    else:
        print('Not an integer number')
    ```
+
+   </details>
 
 2. Test this by entering a non-numeric input, such as the letter "H".
 
@@ -71,6 +90,9 @@ Write a program that can find the factorial of any given number.
 
 1. Since `input()` always returns a string, convert it to an integer inside the `if` statement if it’s numeric.
 
+   <details>
+   <summary>Example conversion block</summary>
+
    ```python
    if number.isnumeric():
        print(f'The number to calculate factorial for is {number}')
@@ -78,6 +100,8 @@ Write a program that can find the factorial of any given number.
    else:
        print('Not an integer number')
    ```
+
+   </details>
 
 ---
 
@@ -87,6 +111,9 @@ Write a program that can find the factorial of any given number.
 
 2. Otherwise, use a loop to calculate the factorial and print it out.
 
+   <details>
+   <summary>Example branch structure</summary>
+
    ```python
    if num == 0:
        # Termination criteria
@@ -94,6 +121,8 @@ Write a program that can find the factorial of any given number.
    else:
        # Loop element – write your code here
    ```
+
+   </details>
 
 3. Run this version to ensure it’s error-free, testing various inputs like `-1` and `0` to confirm the correct output.
 
@@ -103,6 +132,9 @@ Write a program that can find the factorial of any given number.
 
 1. Inside the final `else` block, replace the `# write your code here` comment with a `for` loop to calculate the factorial.
 
+   <details>
+   <summary>Example loop block</summary>
+
    ```python
    # Loop element
    factorial = 1
@@ -111,7 +143,12 @@ Write a program that can find the factorial of any given number.
    print(f'{number}! factorial is {factorial}')
    ```
 
+   </details>
+
 2. Your final program should resemble:
+
+   <details>
+   <summary>Example full solution</summary>
 
    ```python
    print('Starting factorial calculation program')
@@ -131,6 +168,8 @@ Write a program that can find the factorial of any given number.
    else:
        print('Not an integer number')
    ```
+
+   </details>
 
 ---
 

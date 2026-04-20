@@ -4,11 +4,23 @@ Choose one of the activities to implement – if you have time, move on to the o
 
 ---
 
+## Hints and Tips
+
+- For sets, think in terms of overlap and differences.
+- For dictionaries, decide what your key and value represent first.
+- Print intermediate results often when learning operators.
+- Use `.get()` for safer dictionary lookups.
+
+---
+
 ## Activity 1: Sets
 
 The aim of this activity is to use a **Set**.
 
 1. Create two sets of students: one for those who took an exam and one for those who submitted a project. Use simple strings to represent the students, for example:
+
+   <details>
+   <summary>Example starter code</summary>
 
    ```python
    # Set up sets
@@ -19,6 +31,8 @@ The aim of this activity is to use a **Set**.
    print('exam:', exam)
    print('project:', project)
    ```
+
+   </details>
 
 2. Using these sets, answer the following questions:
 
@@ -37,6 +51,9 @@ The aim of this activity is to use a **Set**.
    - The key should be a city.
    - The values should be a tuple containing the flight number, day of the week, time of the flight, and destination (all as strings).
 
+   <details>
+   <summary>Example starter code</summary>
+
    ```python
    flights = {
        'London': ('EY123', 'Monday', '12:00', 'Geneva'),
@@ -46,6 +63,8 @@ The aim of this activity is to use a **Set**.
        'Cardiff': ('WA129', 'Friday', '10:00', 'Dublin')
    }
    ```
+
+   </details>
 
 2. Perform the following tasks:
 
@@ -68,6 +87,42 @@ The aim of this activity is to use a **Set**.
    Removing the Cardiff flight
    All key-value pairs: dict_items([('London', ('EY123', 'Monday', '12:00', 'Geneva')), ('Geneva', ('AI454', 'Tuesday', '13:00', 'London')), ('Dublin', ('BA987', 'Wednesday', '14:00', 'Dublin')), ('Seville', ('SA527', 'Thursday', '11:00', 'Cardiff')), ('France', ('AF429', 'Saturday', '09:00', 'London'))])
    ```
+
+<details>
+<summary>Example solution code (sets and dictionaries)</summary>
+
+```python
+# Activity 1: sets
+exam = {'Andrew', 'Kirsty', 'Beth', 'Emily', 'Sue'}
+project = {'Kirsty', 'Emily', 'Ian', 'Stuart'}
+
+print('both:', exam & project)
+print('exam only:', exam - project)
+print('project only:', project - exam)
+print('either:', exam | project)
+print('either but not both:', exam ^ project)
+
+# Activity 2: dictionaries
+flights = {
+    'London': ('EY123', 'Monday', '12:00', 'Geneva'),
+    'Geneva': ('AI454', 'Tuesday', '13:00', 'London'),
+    'Dublin': ('BA987', 'Wednesday', '14:00', 'Dublin'),
+    'Seville': ('SA527', 'Thursday', '11:00', 'Cardiff'),
+    'Cardiff': ('WA129', 'Friday', '10:00', 'Dublin')
+}
+
+print('Keys:', flights.keys())
+print('Values:', flights.values())
+print('The flight for Dublin is', flights.get('Dublin'))
+
+flights['France'] = ('AF429', 'Saturday', '09:00', 'London')
+print('All key-value pairs:', flights.items())
+
+del flights['Cardiff']
+print('All key-value pairs:', flights.items())
+```
+
+</details>
 
 
 ### Extensions for Activity 1: Sets

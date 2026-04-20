@@ -4,6 +4,15 @@ In this lab, you’ll **design and build** a small game using **functions**, **l
 
 ---
 
+## Hints and Tips
+
+- Keep each function focused on one job (input, comparison, messaging, etc.).
+- Let your `check_guess` function return a value (`"low"`, `"high"`, `"correct"`).
+- Use a loop counter for attempts and stop early on success.
+- Print friendly feedback each turn so users understand what happened.
+
+---
+
 ## 🎯 Game Concept
 
 You are going to build a “Mystery Number” game. The computer picks a random number between 1 and 10, and the player has to guess it in **4 tries or less**.
@@ -98,6 +107,61 @@ Game over.
 ```
 
 ---
+
+<details>
+<summary>Example solution code</summary>
+
+```python
+import random
+
+
+def welcome():
+    print('Welcome to Mystery Number!')
+    print("I'm thinking of a number between 1 and 10.")
+    print("You have 4 tries. Let's begin!")
+
+
+def generate_number():
+    return random.randint(1, 10)
+
+
+def get_guess():
+    return int(input('Guess: '))
+
+
+def check_guess(guess, actual):
+    if guess == actual:
+        return 'correct'
+    if guess > actual:
+        return 'high'
+    return 'low'
+
+
+def run_game():
+    welcome()
+    answer = generate_number()
+
+    for attempt in range(1, 5):
+        guess = get_guess()
+        result = check_guess(guess, answer)
+
+        if result == 'correct':
+            print(f'Correct! You win in {attempt} guesses.')
+            print('Game over.')
+            return
+        if result == 'high':
+            print('Too high!')
+        else:
+            print('Too low!')
+
+    print(f'Sorry, you are out of guesses. The number was {answer}.')
+    print('Game over.')
+
+
+run_game()
+```
+
+</details>
 
 ## 🔍 Reflection
 

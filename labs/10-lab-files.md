@@ -6,6 +6,15 @@ Practise writing structured text to a file using `with open(...)` and reading it
 
 ---
 
+## Hints and Tips
+
+- Build each log line as a string before writing.
+- Use `strftime` once and reuse the formatted timestamp.
+- Remember to add `\n` when writing line-by-line.
+- When reading back, use `.strip()` to remove trailing newlines.
+
+---
+
 ## 📍Step 1: Write a Structured Log File
 
 1. Create a list of messages to log (e.g. `"Sensor initialised"`, `"Reading: 3.41"`).
@@ -56,3 +65,31 @@ Can you split the line back into timestamp and message using `.split(" | ")`?
 - Writing and reading lines
 - String formatting and splitting
 - A structured file format that’s readable but **not yet a CSV**
+
+---
+
+<details>
+<summary>Example solution code</summary>
+
+```python
+from datetime import datetime
+
+messages = ['Sensor initialised', 'Reading: 3.41', 'Reading: 3.39', 'Sensor stopped']
+filename = 'sensor_log.txt'
+
+with open(filename, 'w') as f:
+    for message in messages:
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        line = f'{timestamp} | {message}\n'
+        f.write(line)
+
+with open(filename, 'r') as f:
+    for line in f:
+        line = line.strip()
+        print(line)
+        timestamp, msg = line.split(' | ')
+        print('  timestamp:', timestamp)
+        print('  message:', msg)
+```
+
+</details>

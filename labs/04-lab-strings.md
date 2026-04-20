@@ -1,109 +1,127 @@
 # Lab 4: Python Strings
 
-We are going to try out some of the string-related operations.
+We are going to try out some string operations.
+
+---
+
+## Hints and Tips
+
+- Use clear variable names like `original_string` and `new_string`.
+- Test each string method in isolation before combining everything.
+- Print intermediate values often so you can see exactly what changed.
+- Remember: `input()` returns a string.
+- `find()` returns `-1` when the substring is not found.
 
 ---
 
 ## Step 1: Explore Replacing a String
 
-1. Create a string with words separated by commas and replace the commas with spaces. For example, replace all the commas in `'John,Andrew,Smith,21,London,UK'` with spaces. Now print out the resulting string.
+1. Create a comma-separated string and replace commas with spaces.
+2. Print both the original value and the updated value.
 
-   ```python
-   original_string = 'John,Andrew,Smith,21,London,UK'
-   ```
+<details>
+<summary>Example code</summary>
 
-2. Print out the original string and the new string. Sample output might look like:
+```python
+original_string = 'John,Andrew,Smith,21,London,UK'
+new_string = original_string.replace(',', ' ')
 
-   ```
-   Original string = 'John,Andrew,Smith,21,London,UK'
-   New string = 'John Andrew Smith 21 London UK'
-   ```
+print(f"Original string = '{original_string}'")
+print(f"New string = '{new_string}'")
+```
+
+</details>
 
 ---
 
 ## Step 2: Handle User Input
 
-1. Modify your program to additionally ask the user for two strings, concatenate them together with a space between them, and store them in a new variable called `new_string`.
+1. Ask the user for two strings.
+2. Join them with a space and print the result.
 
-2. Print out the value of `new_string`.
+<details>
+<summary>Example code</summary>
 
-   Example:
+```python
+first = input('Please input the first string: ')
+second = input('Please input the second string: ')
+new_string = f'{first} {second}'
+print(new_string)
+```
 
-   ```
-   Please input the first string: John
-   Please input the second string: Hunt
-   John Hunt
-   ```
+</details>
 
 ---
 
 ## Step 3: Explore String Operations
 
-1. Print out how long the contents of `new_string` is.
+1. Print string length.
+2. Print uppercase version.
+3. Search for `"Albus"`.
+4. Compare with `"Hello World"`.
+5. Print a formatted message with the current value.
 
-2. Convert the contents of `new_string` to all uppercase.
+<details>
+<summary>Example code</summary>
 
-3. Check if `new_string` contains the string "Albus" as a substring.
+```python
+print(f'Length of new_string = {len(new_string)}')
+print(f'Upper case = {new_string.upper()}')
+print(f'The position of the string "Albus" is: {new_string.find("Albus")}')
+print(f'new_string == "Hello World": {new_string == "Hello World"}')
+print(f'The value of new_string is {new_string}')
+```
 
-4. Check if `new_string` matches "Hello World".
-
-5. Use a formatted string to print out a message containing the value of `new_string`.
-
-   Example output:
-
-   ```
-   Length of new_string = 9
-   Upper case = JOHN HUNT
-   The position of the string "Albus" is: -1
-   new_string == "Hello World": False
-   The value of new_string is John Hunt
-   ```
+</details>
 
 ---
 
 ## Step 4: Convert the Following Values into Strings
 
-1. Define the following variables:
+1. Define `flag`, `count`, and `temperature`.
+2. Print each value and type before conversion.
+3. Convert each to a string and print the updated types.
 
-   ```python
-   flag = True
-   count = 10
-   temperature = 32.6
-   ```
+<details>
+<summary>Example code</summary>
 
-2. Print out each of the above values and their type.
+```python
+flag = True
+count = 10
+temperature = 32.6
 
-3. Convert the values to strings and print the results, using the `type()` function to confirm the new types.
+print(f"flag = '{flag}' with type {type(flag)}")
+print(f"count = '{count}' with type {type(count)}")
+print(f"temperature = '{temperature}' with type {type(temperature)}")
+print('-------------------------')
 
-   Sample output:
+flag_string = str(flag)
+count_string = str(count)
+temp_string = str(temperature)
 
-   ```
-   flag = 'True' with type <class 'bool'>
-   count = '10' with type <class 'int'>
-   temperature = '32.6' with type <class 'float'>
-   -------------------------
-   flag_string = 'True' with type <class 'str'>
-   count_string = '10' with type <class 'str'>
-   temp_string = '32.6' with type <class 'str'>
-   ```
+print(f"flag_string = '{flag_string}' with type {type(flag_string)}")
+print(f"count_string = '{count_string}' with type {type(count_string)}")
+print(f"temp_string = '{temp_string}' with type {type(temp_string)}")
+```
+
+</details>
 
 ---
 
 ## Step 5 (Optional): Convert Kilometres to Miles
 
-1. Write code to convert a distance in kilometres into miles.
+1. Ask the user for kilometres.
+2. Convert input to a number.
+3. Convert to miles and print the result.
 
-2. Take input from the user for a distance in kilometres using the `input()` function.
+<details>
+<summary>Example code</summary>
 
-3. Convert the input value from a string into an integer using the `int()` function.
+```python
+km_text = input('Please input the distance in kilometres: ')
+km = int(km_text)
+miles = km * 0.6214
+print(f'The distance in miles is {miles}')
+```
 
-4. Convert this value into miles by dividing the kilometres by 0.6214.
-
-5. Print out a message telling the user what the kilometres are in miles.
-
-   Example:
-
-   ```
-   Please input the distance in kilometres: 15
-   The distance in miles is 9.321
-   ```
+</details>

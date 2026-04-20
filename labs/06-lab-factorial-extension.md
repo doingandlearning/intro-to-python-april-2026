@@ -6,6 +6,15 @@ This lab includes **four small challenges**. You’ll reuse your input validatio
 
 ---
 
+## Hints and Tips
+
+- Reuse your factorial lab validation pattern before doing each challenge.
+- Start totals at `0`, and multiplicative accumulators at `1`.
+- Build each pattern line as a string, then print it.
+- Test tiny values first (`0`, `1`, `3`) before larger numbers.
+
+---
+
 ## ✏️ Step 1: Validate User Input
 
 Ask the user to input a number. Only accept the input if it’s a **non-negative integer**. If the user enters something else, show an error message and **don’t continue**.
@@ -84,4 +93,37 @@ Questions to ask yourself:
 * Did you use variables that are clear and useful?
 * Can you make one version use `while` instead of `for`? (optional)
 * What happens with input 0? Or 1? Or 100?
+
+---
+
+<details>
+<summary>Example solution code (all challenges)</summary>
+
+```python
+n_text = input('Enter a non-negative integer: ')
+if not n_text.isnumeric():
+    print('Invalid input')
+else:
+    n = int(n_text)
+
+    # Challenge 1: sum from 1 to n
+    total = 0
+    for i in range(1, n + 1):
+        total += i
+    print(f'Sum 1..{n} = {total}')
+
+    # Challenge 2: multiplication table
+    for i in range(1, n + 1):
+        print(f'{n} x {i} = {n * i}')
+
+    # Challenge 3: star triangle
+    for i in range(1, n + 1):
+        print('*' * i)
+
+    # Challenge 4: number pattern
+    for i in range(1, n + 1):
+        print(str(i) * i)
+```
+
+</details>
 

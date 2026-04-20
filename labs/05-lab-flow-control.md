@@ -4,6 +4,15 @@ There are three different exercises in this lab. You can select which you are in
 
 ---
 
+## Hints and Tips
+
+- Convert input once, then branch your logic with `if / elif / else`.
+- For numeric checks, keep the conditions mutually exclusive and easy to read.
+- For odd/even, `% 2` is your friend.
+- In validation tasks, check input format first, then conversion, then calculation.
+
+---
+
 ## Step 1: Check if Input is Positive or Negative
 
 The aim of this exercise is to write a small program to test if an integer is positive or negative.
@@ -47,9 +56,14 @@ This exercise requires you to write a program to take input from the user and de
 
 1. To test if a number is even, use:
 
+   <details>
+   <summary>Example expression</summary>
+
    ```python
    (num % 2) == 0
    ```
+
+   </details>
 
    This will return `True` if the number is even.
 
@@ -95,3 +109,35 @@ In this exercise, you should return to the kilometres to miles converter from th
    Please input the distance in kilometres: aaaaa
    Not an integer number
    ```
+
+<details>
+<summary>Example solution code</summary>
+
+```python
+# Step 1: positive / negative / zero
+num = int(input('Please input a number: '))
+if num > 0:
+    print('Number is positive')
+elif num < 0:
+    print('Number is negative')
+else:
+    print('Number is Zero')
+
+# Step 2: odd / even
+num = int(input('Please input a number: '))
+if (num % 2) == 0:
+    print('The number is even')
+else:
+    print('The number is odd')
+
+# Step 3: optional km to miles with simple validation
+km_text = input('Please input the distance in kilometres: ')
+if km_text.isnumeric():
+    km = int(km_text)
+    print(f'You entered the distance {km} in kilometres')
+    print(f'The distance in miles is {km * 0.6214}')
+else:
+    print('Not an integer number')
+```
+
+</details>

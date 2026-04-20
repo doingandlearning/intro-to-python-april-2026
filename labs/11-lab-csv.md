@@ -8,6 +8,15 @@ You’ll simulate storing a series of temperature readings taken from a sensor i
 
 ---
 
+## Hints and Tips
+
+- Keep a consistent order for each reading field.
+- Use one function to write, one function to read.
+- Remember that `csv.reader` returns strings for every column.
+- Convert numeric values after reading if you need numeric operations.
+
+---
+
 ## 📍Part 1: Write to a CSV File
 
 ### Step 1: Create a Structure for the Readings
@@ -73,3 +82,51 @@ How do you rebuild a tuple from a row?
 - Add a header row (e.g., `['Temperature', 'Date', 'Time', 'Scale']`)
 - Validate that all rows have the correct number of columns before printing
 - Add input() to let the user name the file
+
+---
+
+<details>
+<summary>Example solution code</summary>
+
+```python
+import csv
+
+
+readings = (
+    (21.1, '04/05/23', '12:00', 'Celsius'),
+    (21.4, '04/05/23', '12:05', 'Celsius'),
+    (21.0, '04/05/23', '12:10', 'Celsius'),
+    (20.8, '04/05/23', '12:15', 'Celsius'),
+    (21.2, '04/05/23', '12:20', 'Celsius'),
+)
+
+
+def write_csv(filename, data):
+    with open(filename, 'w', newline='') as f:
+        writer = csv.writer(f)
+        for row in data:
+            writer.writerow(row)
+
+
+def read_csv(filename):
+    loaded = []
+    with open(filename, 'r', newline='') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            temp = float(row[0])
+            date = row[1]
+            time = row[2]
+            scale = row[3]
+            loaded.append((temp, date, time, scale))
+    return tuple(loaded)
+
+
+filename = 'temperature_readings.csv'
+write_csv(filename, readings)
+loaded_readings = read_csv(filename)
+
+for reading in loaded_readings:
+    print(reading)
+```
+
+</details>
