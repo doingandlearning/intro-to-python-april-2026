@@ -1,16 +1,5 @@
 # Lab 5 (Alternative): CERN Control Room Checks
 
-This alternative lab keeps the same Python level as the original one, but uses a CERN-flavoured context.
-
-You only need concepts already covered:
-
-- variables and basic types (`str`, `int`, `float`)
-- string methods (`lower()`, `strip()`, `isnumeric()`)
-- numeric operations and comparisons
-- `if / elif / else`
-
----
-
 ## Hints and Tips
 
 - Convert user input once, then branch.
@@ -59,6 +48,24 @@ Enter beam energy (GeV): 6500
 Physics run
 ```
 
+<details>
+<summary>Solution (Exercise 1)</summary>
+
+```python
+energy = float(input("Enter beam energy (GeV): "))
+
+if energy < 0:
+    print("Invalid energy")
+elif energy == 0:
+    print("No beam")
+elif energy < 1000:
+    print("Setup mode")
+else:
+    print("Physics run")
+```
+
+</details>
+
 ---
 
 ## Exercise 2: Detector Channel Parity Check
@@ -81,6 +88,20 @@ Channel is even
 Enter channel ID: 73
 Channel is odd
 ```
+
+<details>
+<summary>Solution (Exercise 2)</summary>
+
+```python
+channel = int(input("Enter channel ID: "))
+
+if channel % 2 == 0:
+    print("Channel is even")
+else:
+    print("Channel is odd")
+```
+
+</details>
 
 ---
 
@@ -115,6 +136,20 @@ Enter badge ID: 999
 Badge rejected
 ```
 
+<details>
+<summary>Solution (Exercise 3)</summary>
+
+```python
+badge = input("Enter badge ID: ").strip()
+
+if badge.isnumeric() and len(badge) == 6:
+    print("Badge accepted")
+else:
+    print("Badge rejected")
+```
+
+</details>
+
 ---
 
 ## Optional Stretch: Cryo Temperature Warning
@@ -125,39 +160,12 @@ Ask for temperature in Kelvin (`float`) and print:
 - from `1.9` to `2.1` (inclusive): `Nominal range`
 - above `2.1`: `Above nominal operating point`
 
----
-
 <details>
-<summary>Example solution code</summary>
+<summary>Solution (Optional Stretch)</summary>
 
 ```python
-# Exercise 1: Beam status classifier
-energy = float(input("Enter beam energy (GeV): "))
-if energy < 0:
-    print("Invalid energy")
-elif energy == 0:
-    print("No beam")
-elif energy < 1000:
-    print("Setup mode")
-else:
-    print("Physics run")
-
-# Exercise 2: Detector channel parity
-channel = int(input("Enter channel ID: "))
-if channel % 2 == 0:
-    print("Channel is even")
-else:
-    print("Channel is odd")
-
-# Exercise 3: Badge validation
-badge = input("Enter badge ID: ").strip()
-if badge.isnumeric() and len(badge) == 6:
-    print("Badge accepted")
-else:
-    print("Badge rejected")
-
-# Optional stretch: Cryo temperature warning
 temp_k = float(input("Enter temperature (K): "))
+
 if temp_k < 1.9:
     print("Below nominal operating point")
 elif temp_k <= 2.1:
