@@ -35,3 +35,99 @@ Please help me understand:
 4. If I wanted to add [DESCRIBE YOUR NEW FEATURE], what would "in the style of this codebase" look like — without writing it for me?
 
 I want to fit in with what's already there, not impose my own style on top of it.
+
+# Prompt 4: Debug Without Giving Me the Fix
+
+My code is not working.
+Here is my code and the error I am getting:
+[PASTE CODE + ERROR]
+
+Do not fix it for me.
+Tell me:
+
+1. What kind of problem this is
+2. Where I should be looking first
+3. What questions I should ask myself to find the bug
+4. One small next debugging step I can try
+
+Help me reason it out instead of giving me the final answer.
+
+# Prompt 5: Review My Code Quality (Without Rewriting)
+
+This code works, but I am not sure if it is well-written:
+[PASTE CODE]
+
+Do not rewrite it.
+Tell me:
+
+1. What a more experienced developer might notice or question
+2. Any readability or maintainability concerns
+3. Any risky assumptions or edge cases
+4. What topics I should look up to understand the feedback better
+
+I want to improve my judgment, not just get a rewritten version.
+
+# Prompt 6: Explain This Error Message in Plain English
+
+I got this error:
+[PASTE ERROR]
+
+Explain:
+
+1. What this error is actually telling me in plain English
+2. Where in my code I should look first
+3. What this class of error usually means in Python
+4. A simple checklist for narrowing it down
+
+Do not write the fix. Help me interpret the error and investigate it.
+
+# Prompt 7: Scope This Feature Before I Build It
+
+I want to add [FEATURE] to my project.
+
+Help me understand:
+
+1. How complex this is (low/medium/high and why)
+2. What I would need to learn first
+3. Common pitfalls
+4. A smaller first version (MVP) I could build first
+
+Do not implement it. Help me decide if I am ready and what to do first.
+
+# Prompt 8: I Read the Docs but Still Do Not Get It
+
+I have read the docs for [LIBRARY/FUNCTION], and I still do not fully understand it.
+Here is what I think it does:
+[YOUR UNDERSTANDING]
+
+Please tell me:
+
+1. What I got right
+2. What I got wrong
+3. The gap in my mental model
+4. A better way to think about it
+5. A tiny practice exercise to confirm I understand it
+
+Do not write production code for me. Help me build understanding.
+
+### Prompt 9: Design Test Cases Before Coding
+
+I am about to write [FUNCTION/FEATURE]. Before coding, help me design test cases.
+List normal cases, edge cases, and failure cases I should think through first.
+Do not write the implementation.
+
+### Prompt 10: Refactor Safely in Small Steps
+
+I want to refactor this code:
+[PASTE CODE]
+
+Do not rewrite it all at once.
+Help me plan a sequence of small, safe refactor steps, what to verify after each step, and what could break.
+
+### Prompt 11: Performance Investigation Mindset
+
+This code feels slow:
+[PASTE CODE OR DESCRIPTION]
+
+Do not optimize it yet.
+Help me figure out what to measure first, where likely bottlenecks are, and how to test whether changes actually improve performance.
