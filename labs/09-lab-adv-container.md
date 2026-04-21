@@ -1,173 +1,203 @@
-# Lab 9: Sets and Dictionaries
+# Lab 9: Advanced Containers (Dictionary-Focused)
 
-Choose one of the activities to implement – if you have time, move on to the other activity.
+This lab focuses mainly on **dictionaries**, with **lists** and **tuples** where useful.
+
+You will practise:
+
+- choosing good dictionary keys and values
+- updating and reading dictionary data
+- looping through dictionary items
+- writing small functions that work with dictionaries
 
 ---
 
 ## Hints and Tips
 
-- For sets, think in terms of overlap and differences.
-- For dictionaries, decide what your key and value represent first.
-- Print intermediate results often when learning operators.
-- Use `.get()` for safer dictionary lookups.
+- Decide your dictionary shape before writing logic.
+- Use `.get()` when a key might not exist.
+- Use tuples when a record has a fixed structure.
+- Use lists when order matters or when storing many records.
+- Keep function jobs clear: compute, then return.
 
 ---
 
-## Activity 1: Sets
+## Task 1: Build a Flight Dictionary
 
-The aim of this activity is to use a **Set**.
+Create a dictionary named `flights`.
 
-1. Create two sets of students: one for those who took an exam and one for those who submitted a project. Use simple strings to represent the students, for example:
+- Key: city name (string)
+- Value: tuple `(flight_number, day, time, destination)`
 
-   <details>
-   <summary>Example starter code</summary>
+Use at least 5 entries.
 
-   ```python
-   # Set up sets
-   exam = {'Andrew', 'Kirsty', 'Beth', 'Emily', 'Sue'}
-   project = {'Kirsty', 'Emily', 'Ian', 'Stuart'}
-   
-   # Output the basic sets
-   print('exam:', exam)
-   print('project:', project)
-   ```
+Then:
 
-   </details>
-
-2. Using these sets, answer the following questions:
-
-   - Which students took both the exam and submitted a project?
-   - Which students only took the exam?
-   - Which students only submitted the project?
-   - List all students who took either (or both) of the exam and the project.
-   - List all students who took either (but not both) of the exam and the project.
-
----
-
-## Activity 2: Dictionaries
-
-1. Create a dictionary to represent flights from cities around Europe.
-
-   - The key should be a city.
-   - The values should be a tuple containing the flight number, day of the week, time of the flight, and destination (all as strings).
-
-   <details>
-   <summary>Example starter code</summary>
-
-   ```python
-   flights = {
-       'London': ('EY123', 'Monday', '12:00', 'Geneva'),
-       'Geneva': ('AI454', 'Tuesday', '13:00', 'London'),
-       'Dublin': ('BA987', 'Wednesday', '14:00', 'Dublin'),
-       'Seville': ('SA527', 'Thursday', '11:00', 'Cardiff'),
-       'Cardiff': ('WA129', 'Friday', '10:00', 'Dublin')
-   }
-   ```
-
-   </details>
-
-2. Perform the following tasks:
-
-   - Print out all the keys.
-   - Print out all the values.
-   - Find the flight associated with a particular city (e.g., Dublin).
-   - Add a new flight for France to the dictionary and print out all the key-value pairs. The flight for France could be `('AF429', 'Saturday', '09:00', 'London')`.
-   - Remove the flight from the dictionary for Cardiff and reprint all items.
-
-3. Sample output:
-
-   ```
-   Keys: dict_keys(['London', 'Geneva', 'Dublin', 'Seville', 'Cardiff'])
-   Values: dict_values([('EY123', 'Monday', '12:00', 'Geneva'), ('AI454', 'Tuesday', '13:00', 'London'), ('BA987', 'Wednesday', '14:00', 'Dublin'), ('SA527', 'Thursday', '11:00', 'Cardiff'), ('WA129', 'Friday', '10:00', 'Dublin')])
-
-   The flight for Dublin is ('BA987', 'Wednesday', '14:00', 'Dublin')
-
-   All key-value pairs: dict_items([('London', ('EY123', 'Monday', '12:00', 'Geneva')), ('Geneva', ('AI454', 'Tuesday', '13:00', 'London')), ('Dublin', ('BA987', 'Wednesday', '14:00', 'Dublin')), ('Seville', ('SA527', 'Thursday', '11:00', 'Cardiff')), ('Cardiff', ('WA129', 'Friday', '10:00', 'Dublin')), ('France', ('AF429', 'Saturday', '09:00', 'London'))])
-
-   Removing the Cardiff flight
-   All key-value pairs: dict_items([('London', ('EY123', 'Monday', '12:00', 'Geneva')), ('Geneva', ('AI454', 'Tuesday', '13:00', 'London')), ('Dublin', ('BA987', 'Wednesday', '14:00', 'Dublin')), ('Seville', ('SA527', 'Thursday', '11:00', 'Cardiff')), ('France', ('AF429', 'Saturday', '09:00', 'London'))])
-   ```
+1. Print all departure cities.
+2. Print all flight records.
+3. Print the flight record for one city using `.get()`.
 
 <details>
-<summary>Example solution code (sets and dictionaries)</summary>
+<summary>Solution (Task 1)</summary>
 
 ```python
-# Activity 1: sets
-exam = {'Andrew', 'Kirsty', 'Beth', 'Emily', 'Sue'}
-project = {'Kirsty', 'Emily', 'Ian', 'Stuart'}
-
-print('both:', exam & project)
-print('exam only:', exam - project)
-print('project only:', project - exam)
-print('either:', exam | project)
-print('either but not both:', exam ^ project)
-
-# Activity 2: dictionaries
 flights = {
-    'London': ('EY123', 'Monday', '12:00', 'Geneva'),
-    'Geneva': ('AI454', 'Tuesday', '13:00', 'London'),
-    'Dublin': ('BA987', 'Wednesday', '14:00', 'Dublin'),
-    'Seville': ('SA527', 'Thursday', '11:00', 'Cardiff'),
-    'Cardiff': ('WA129', 'Friday', '10:00', 'Dublin')
+    "London": ("EY123", "Monday", "12:00", "Geneva"),
+    "Geneva": ("AI454", "Tuesday", "13:00", "London"),
+    "Dublin": ("BA987", "Wednesday", "14:00", "Lisbon"),
+    "Seville": ("SA527", "Thursday", "11:00", "Cardiff"),
+    "Cardiff": ("WA129", "Friday", "10:00", "Dublin"),
 }
 
-print('Keys:', flights.keys())
-print('Values:', flights.values())
-print('The flight for Dublin is', flights.get('Dublin'))
+print("Cities:")
+for city in flights:
+    print(city)
 
-flights['France'] = ('AF429', 'Saturday', '09:00', 'London')
-print('All key-value pairs:', flights.items())
+print("\nRecords:")
+for record in flights.values():
+    print(record)
 
-del flights['Cardiff']
-print('All key-value pairs:', flights.items())
+print("\nFlight from Dublin:")
+print(flights.get("Dublin"))
 ```
 
 </details>
 
+---
 
-### Extensions for Activity 1: Sets
+## Task 2: Add, Update, and Remove Flights
 
-1. **Top Performers**:
-   - Assume the students who took both the exam and submitted a project are top performers.
-   - Create a new set of "Top Performers" containing these students, and print it.
-   
-2. **Counting Participation**:
-   - Count how many students participated in either the exam or the project. Print the total unique count.
+Write a function:
 
-3. **Comparing with Another Class**:
-   - Introduce a new set representing students from another class who only took the exam.
-   - Print which students are common between the two classes.
-   - Print students who are unique to each class.
+`update_schedule(flights)`
 
-4. **Add Extra Students**:
-   - Allow the user to add a new student to each of the "exam" and "project" sets.
-   - Print out the updated sets and any changes in students who completed both or only one of the activities.
+Inside the function:
 
-5. **Set Symmetry Check**:
-   - Check if both sets have the same number of students.
-   - If not, print which set has more participants.
+1. Add one new city entry.
+2. Update the time for one existing city.
+3. Remove one city with `pop()`.
+4. Return the updated dictionary.
+
+Then print all city/record pairs clearly.
+
+<details>
+<summary>Solution (Task 2)</summary>
+
+```python
+def update_schedule(flights):
+    flights["Paris"] = ("AF429", "Saturday", "09:00", "London")
+    flights["London"] = ("EY123", "Monday", "12:30", "Geneva")
+    flights.pop("Cardiff")
+    return flights
+
+
+flights = {
+    "London": ("EY123", "Monday", "12:00", "Geneva"),
+    "Geneva": ("AI454", "Tuesday", "13:00", "London"),
+    "Dublin": ("BA987", "Wednesday", "14:00", "Lisbon"),
+    "Seville": ("SA527", "Thursday", "11:00", "Cardiff"),
+    "Cardiff": ("WA129", "Friday", "10:00", "Dublin"),
+}
+
+updated = update_schedule(flights)
+for city, info in updated.items():
+    print(f"{city}: {info}")
+```
+
+</details>
 
 ---
 
-### Extensions for Activity 2: Dictionaries
+## Task 3: Group Flights by Destination
 
-1. **Flight Schedule by Destination**:
-   - Create a reverse lookup dictionary where each destination is a key, and the value is a list of all flights that go to that destination.
-   - Print the dictionary to show which cities have flights heading to the same destination.
+Write a function:
 
-2. **Finding Flights on a Specific Day**:
-   - Ask the user to enter a day of the week.
-   - Print out all flights that depart on that day, showing the city, time, and destination.
+`group_by_destination(flights)`
 
-3. **Time Zone Adjustments**:
-   - Assume each flight is in local time and needs to be converted to UTC.
-   - Adjust each time by a random offset (simulating different time zones) and print the new schedule.
+Create and return a new dictionary where:
 
-4. **Updating a Flight Schedule**:
-   - Prompt the user to update the details of a flight, such as changing the time or destination for a city.
-   - After updating, print the full schedule to show the change.
+- key = destination city
+- value = list of departure cities that fly there
 
-5. **Flight Connections**:
-   - Create a function that checks if there is a connecting flight from one city to another within the next two hours.
-   - For instance, if a flight from London arrives in Geneva at 12:00, check if there’s another flight departing from Geneva before 14:00.
-   - Print out any connections found for cities with flights close to each other.
+Example output idea:
+
+`{"London": ["Geneva", "Paris"], "Dublin": ["Cardiff"]}`
+
+<details>
+<summary>Solution (Task 3)</summary>
+
+```python
+def group_by_destination(flights):
+    grouped = {}
+    for city, record in flights.items():
+        destination = record[3]
+        if destination not in grouped:
+            grouped[destination] = []
+        grouped[destination].append(city)
+    return grouped
+
+
+flights = {
+    "London": ("EY123", "Monday", "12:00", "Geneva"),
+    "Geneva": ("AI454", "Tuesday", "13:00", "London"),
+    "Dublin": ("BA987", "Wednesday", "14:00", "London"),
+    "Seville": ("SA527", "Thursday", "11:00", "Cardiff"),
+    "Cardiff": ("WA129", "Friday", "10:00", "Dublin"),
+}
+
+result = group_by_destination(flights)
+for destination, cities in result.items():
+    print(f"{destination}: {cities}")
+```
+
+</details>
+
+---
+
+## Task 4 (Optional): Validate City Queries
+
+Write a function:
+
+`describe_flight(flights, city)`
+
+Rules:
+
+1. If the city exists, return a readable sentence with flight number, day, time, and destination.
+2. If it does not exist, return `"No flight found for that city"`.
+
+Ask the user for a city and print the result.
+
+<details>
+<summary>Solution (Task 4 Optional)</summary>
+
+```python
+def describe_flight(flights, city):
+    record = flights.get(city)
+    if record is None:
+        return "No flight found for that city"
+
+    flight_number = record[0]
+    day = record[1]
+    time = record[2]
+    destination = record[3]
+    return f"{city}: {flight_number} on {day} at {time} to {destination}"
+
+
+flights = {
+    "London": ("EY123", "Monday", "12:00", "Geneva"),
+    "Geneva": ("AI454", "Tuesday", "13:00", "London"),
+    "Dublin": ("BA987", "Wednesday", "14:00", "Lisbon"),
+}
+
+query = input("Enter city: ")
+print(describe_flight(flights, query))
+```
+
+</details>
+
+---
+
+## Reflection
+
+- Which dictionary key/value design worked best for these tasks?
+- Where did using tuples make the records cleaner?
+- Which function was easiest to reuse and why?
