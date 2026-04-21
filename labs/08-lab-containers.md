@@ -1,102 +1,201 @@
-# Lab 8: Containers
+# Lab 8: Containers (Lists and Tuples)
 
-In this lab, you will modify your number guess game to maintain a history of the guesses made by the user.
+This lab introduces containers in Python by building small tools with:
+
+- **types** (`int`, `float`, `str`)
+- **flow control** (`if`, `for`, `while`)
+- **functions**
+- **containers** (`list`, `tuple`)
 
 ---
 
 ## Hints and Tips
 
-- Use a list because order matters and duplicates are allowed.
-- Append each guess immediately after reading it.
-- At the end, print attempts and then the list itself.
-- If you use functions, pass the list around or keep it in one clearly named place.
+- Use a **list** when order matters or duplicates are allowed.
+- Use a **tuple** when you want a fixed grouped record.
+- Keep function jobs small and clear.
+- Return results from functions and print outside when possible.
 
 ---
 
-## Objective
+## Task 1: Collect and Analyze Three Measurements
 
-Once the game is over, display a printout of the guesses made by the user in the order they were entered. This allows the user to review their gameplay.
+Write a function:
 
----
+`analyze_measurements(values)`
 
-## Implementation Details
+Where `values` is a list of numbers.
 
-- To maintain the guess history, use a **list**:
-  - It should be modifiable.
-  - It should allow duplicates (since the user may enter the same guess multiple times).
-  - It should preserve the order of the guesses.
+The function should return a summary string with:
 
-- Consider using a global variable to hold the list for simple access across functions.
+1. count
+2. total
+3. average
+4. highest value
+5. lowest value
 
----
+Then:
 
-## Sample Output
-
-```
-Welcome to the number guess game
-Please guess a number between 1 and 10: 5
-Sorry, wrong number
-Your guess was lower than the number
-Please guess again: 7
-Sorry, wrong number
-Your guess was lower than the number
-Please guess again: 9
-Sorry, wrong number
-Your guess was lower than the number
-Please guess again: 10
-Well done, you won!
-You took 4 attempts to complete the game
-Your guesses were:
-[5, 7, 9, 10]
-Game Over
-```
-
----
-
-Incorporate this list of guesses into your existing game to track and display the guesses after the game concludes.
-
-
----
-
-Possible extensions:
-
-- Feedback After Each Guess: After each guess, provide more specific feedback on how close the guess is to the target.
-- Hint System: After three incorrect attempts, offer a hint by specifying if the target number is in the upper or lower half of the range.
-- Play Again Option: At the end of each game, allow the user to decide if they want to play again.
-
----
+- ask the user for three values
+- store them in a list
+- call the function
+- print the returned summary
 
 <details>
-<summary>Example solution code</summary>
+<summary>Solution (Task 1)</summary>
 
 ```python
-import random
+def analyze_measurements(values):
+    count = len(values)
+    total = sum(values)
+    average = total / count
+    highest = max(values)
+    lowest = min(values)
+    return (
+        f"Count: {count}, Total: {total}, Average: {average}, "
+        f"Highest: {highest}, Lowest: {lowest}"
+    )
 
-target = random.randint(1, 10)
-guesses = []
 
-print('Welcome to the number guess game')
+measurements = []
+for i in range(3):
+    value = float(input(f"Enter measurement {i + 1}: "))
+    measurements.append(value)
 
-for attempt in range(1, 5):
-    guess = int(input('Please guess a number between 1 and 10: '))
-    guesses.append(guess)
-
-    if guess == target:
-        print('Well done, you won!')
-        break
-
-    print('Sorry, wrong number')
-    if guess < target:
-        print('Your guess was lower than the number')
-    else:
-        print('Your guess was higher than the number')
-else:
-    print(f'Out of attempts. The number was {target}')
-
-print(f'You took {len(guesses)} attempts to complete the game')
-print('Your guesses were:')
-print(guesses)
-print('Game Over')
+summary = analyze_measurements(measurements)
+print(summary)
 ```
 
 </details>
+
+---
+
+## Task 2: Build and Read Tuples
+
+Write a function:
+
+`describe_point(point)`
+
+Where `point` is a tuple with three values:
+
+`(x, y, label)`
+
+For example:
+
+`(12.5, 7.2, "sensor-A")`
+
+Return one string:
+
+`"Label sensor-A is at x=12.5, y=7.2"`
+
+Then create at least two point tuples and print the description for each.
+
+<details>
+<summary>Solution (Task 2)</summary>
+
+```python
+def describe_point(point):
+    x = point[0]
+    y = point[1]
+    label = point[2]
+    return f"Label {label} is at x={x}, y={y}"
+
+
+point_a = (12.5, 7.2, "sensor-A")
+point_b = (3.0, 9.8, "sensor-B")
+
+print(describe_point(point_a))
+print(describe_point(point_b))
+```
+
+</details>
+
+---
+
+## Task 3: Store Readings as Tuples in a List
+
+Create a list called `readings`.
+
+Each item in the list should be a tuple:
+
+`(time_s, value)`
+
+Example:
+
+`(1, 12.4)`
+
+Write a function:
+
+`average_reading(readings)`
+
+Rules:
+
+1. Use a loop to add up all reading values.
+2. Return the average value.
+3. If the list is empty, return `None`.
+
+Print the result for a sample `readings` list.
+
+<details>
+<summary>Solution (Task 3)</summary>
+
+```python
+def average_reading(readings):
+    if len(readings) == 0:
+        return None
+
+    total = 0
+    for reading in readings:
+        value = reading[1]
+        total += value
+
+    return total / len(readings)
+
+
+readings = [(1, 12.4), (2, 13.1), (3, 11.9), (4, 12.8)]
+print(average_reading(readings))
+```
+
+</details>
+
+---
+
+## Task 4 (Optional): Merge Two Lists and Remove Duplicates
+
+Write a function:
+
+`merge_unique(list_a, list_b)`
+
+Return a new list that contains all values from both lists, but without duplicates.
+Keep the first-seen order.
+
+Example:
+
+- `list_a = [1, 2, 3, 2]`
+- `list_b = [3, 4, 5]`
+- result -> `[1, 2, 3, 4, 5]`
+
+<details>
+<summary>Solution (Task 4 Optional)</summary>
+
+```python
+def merge_unique(list_a, list_b):
+    merged = []
+    for value in list_a + list_b:
+        if value not in merged:
+            merged.append(value)
+    return merged
+
+
+print(merge_unique([1, 2, 3, 2], [3, 4, 5]))
+```
+
+</details>
+
+---
+
+## Reflection
+
+- Where was a list the best choice?
+- Where was a tuple the best choice?
+- Which function would you most likely reuse in another file?
