@@ -1,172 +1,207 @@
-# 🧠 Lab 7: Mystery Number – Build a Guessing Game
+# Lab 7: Functions for Useful Mini-Tools
 
-In this lab, you’ll **design and build** a small game using **functions**, **loops**, and **conditional logic**. You’ll focus on **breaking your program into meaningful parts**, not just writing everything in one big block.
+This lab focuses on turning scripts into reusable function-based code.
+
+You will practise:
+
+- organizing programs into logical blocks
+- defining functions
+- parameter passing
+- default parameter values
+- named parameters
+- returning values
 
 ---
 
 ## Hints and Tips
 
-- Keep each function focused on one job (input, comparison, messaging, etc.).
-- Let your `check_guess` function return a value (`"low"`, `"high"`, `"correct"`).
-- Use a loop counter for attempts and stop early on success.
-- Print friendly feedback each turn so users understand what happened.
+- Keep each function responsible for one clear task.
+- Use parameters instead of hard-coding values inside functions.
+- Prefer `return` for results, and print in a separate place.
+- Start simple, test, then improve.
 
 ---
 
-## 🎯 Game Concept
+## Task 1: Turn Your Factorial Code into a Function
 
-You are going to build a “Mystery Number” game. The computer picks a random number between 1 and 10, and the player has to guess it in **4 tries or less**.
+Reuse your previous factorial logic, but move it into a function:
 
-Each time the player guesses:
+`factorial(n)`
 
-* If it’s correct: Congratulate them and end the game.
-* If it’s wrong: Tell them whether the guess was too high or too low.
-* After 4 tries: Reveal the answer and end the game.
+Requirements:
 
----
+1. If `n` is negative, return `None`.
+2. If `n` is `0`, return `1`.
+3. Otherwise, return the factorial using a loop.
+4. Ask user input, call the function, and print a message.
 
-## 🧩 Your Task
+Example output:
 
-Use what you’ve learned so far to **design the structure** of the program.
-
-### Start by sketching out:
-
-1. What should the game do?
-2. What parts feel like **repeated behaviour**?
-3. What small, reusable functions could help?
-
----
-
-## 🔧 Suggested Steps
-
-Don’t follow this like a recipe — use it for **inspiration** if you’re stuck.
-
-### Step 1: Welcome the Player
-
-* Create a function that prints a welcome message and explains the rules.
-
-### Step 2: Pick a Number
-
-* At the top of your program `import random` (we'll look more at this tomorrow)
-* Use `random.randint(1, 10)` inside a function like `generate_number()` to return the mystery number.
-
-### Step 3: Ask for a Guess
-
-* Create a function like `get_guess()` to ask the user for a number.
-* Make sure it returns an `int`.
-* What happens if the user types something invalid? (optional: handle that)
-
-### Step 4: Compare the Guess
-
-* Create a function like `check_guess(guess, actual)` that returns `"high"`, `"low"`, or `"correct"`.
-
-### Step 5: Track Attempts
-
-* Use a loop (e.g. `for` or `while`) to give the user up to 4 guesses.
-* Print helpful messages each time based on the result of `check_guess`.
-
----
-
-## 🧠 Stretch Ideas
-
-Try one or more of these once your main game works:
-
-* Add a **cheat code** (e.g. guess `0` reveals the answer but doesn’t use up a turn)
-* Let the user choose the **range of numbers** at the start
-* Keep track of the **number of guesses**, and print it at the end
-* Let the user **play again** without restarting the program (you’ll need `while` and more functions)
-
----
-
-## ✅ What You Should Practise
-
-* Writing **small, reusable functions**
-* Using **parameters and return values**
-* Combining **loops**, **conditionals**, and **input**
-* Keeping your program **well-structured**
-
----
-
-## 🧪 Example Run
-
-```
-Welcome to Mystery Number!
-I'm thinking of a number between 1 and 10.
-You have 4 tries. Let's begin!
-
-Guess: 7
-Too high!
-
-Guess: 3
-Too low!
-
-Guess: 5
-Correct! You win in 3 guesses.
-
-Game over.
+```text
+Enter n: 5
+5! = 120
 ```
 
----
+```text
+Enter n: -2
+Factorial not defined for negative numbers
+```
 
 <details>
-<summary>Example solution code</summary>
+<summary>Solution (Task 1)</summary>
 
 ```python
-import random
+def factorial(n):
+    if n < 0:
+        return None
+    if n == 0:
+        return 1
+
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
 
 
-def welcome():
-    print('Welcome to Mystery Number!')
-    print("I'm thinking of a number between 1 and 10.")
-    print("You have 4 tries. Let's begin!")
+n = int(input("Enter n: "))
+value = factorial(n)
 
-
-def generate_number():
-    return random.randint(1, 10)
-
-
-def get_guess():
-    return int(input('Guess: '))
-
-
-def check_guess(guess, actual):
-    if guess == actual:
-        return 'correct'
-    if guess > actual:
-        return 'high'
-    return 'low'
-
-
-def run_game():
-    welcome()
-    answer = generate_number()
-
-    for attempt in range(1, 5):
-        guess = get_guess()
-        result = check_guess(guess, answer)
-
-        if result == 'correct':
-            print(f'Correct! You win in {attempt} guesses.')
-            print('Game over.')
-            return
-        if result == 'high':
-            print('Too high!')
-        else:
-            print('Too low!')
-
-    print(f'Sorry, you are out of guesses. The number was {answer}.')
-    print('Game over.')
-
-
-run_game()
+if value is None:
+    print("Factorial not defined for negative numbers")
+else:
+    print(f"{n}! = {value}")
 ```
 
 </details>
 
-## 🔍 Reflection
+---
 
-After you finish:
+## Task 2: Build a Beam Energy Classifier Function
 
-* How many functions did you write?
-* Did any of them feel too long or confusing?
-* Would someone else understand your code?
+Write a function:
+
+`classify_beam_energy(energy_gev)`
+
+Return one of these strings:
+
+- `Invalid energy` (energy < 0)
+- `No beam` (energy == 0)
+- `Setup mode` (0 < energy < 1000)
+- `Physics run` (energy >= 1000)
+
+Then ask the user for energy and print the returned label.
+
+<details>
+<summary>Solution (Task 2)</summary>
+
+```python
+def classify_beam_energy(energy_gev):
+    if energy_gev < 0:
+        return "Invalid energy"
+    if energy_gev == 0:
+        return "No beam"
+    if energy_gev < 1000:
+        return "Setup mode"
+    return "Physics run"
+
+
+energy = float(input("Enter beam energy (GeV): "))
+status = classify_beam_energy(energy)
+print(status)
+```
+
+</details>
+
+---
+
+## Task 3: Distance Converter with Default and Named Parameters
+
+Write a function:
+
+`convert_distance(value, from_unit="km", to_unit="miles")`
+
+Support conversions:
+
+- km -> miles
+- miles -> km
+
+Return the converted numeric value.
+If the unit pair is not supported, return `None`.
+
+Then call your function in at least three ways:
+
+1. positional parameters
+2. using default values
+3. named parameters
+
+<details>
+<summary>Solution (Task 3)</summary>
+
+```python
+def convert_distance(value, from_unit="km", to_unit="miles"):
+    if from_unit == "km" and to_unit == "miles":
+        return value * 0.6214
+    if from_unit == "miles" and to_unit == "km":
+        return value / 0.6214
+    return None
+
+
+# positional parameters
+print(convert_distance(10, "km", "miles"))
+
+# default parameters
+print(convert_distance(10))
+
+# named parameters
+print(convert_distance(value=5, from_unit="miles", to_unit="km"))
+```
+
+</details>
+
+---
+
+## Task 4 (Optional): Analyze a Run and Return a Summary
+
+Write a function:
+
+`analyze_counts(a, b, c)`
+
+Compute:
+
+1. total (`a + b + c`)
+2. average
+3. highest value
+
+Return **one summary string** that includes all three results clearly.
+Then call the function and print the returned message.
+
+<details>
+<summary>Solution (Task 4 Optional)</summary>
+
+```python
+def analyze_counts(a, b, c):
+    total = a + b + c
+    average = total / 3
+    highest = a
+
+    if b > highest:
+        highest = b
+    if c > highest:
+        highest = c
+
+    return f"Total: {total}, Average: {average}, Highest: {highest}"
+
+
+message = analyze_counts(120, 95, 140)
+print(message)
+```
+
+</details>
+
+---
+
+## Reflection
+
+- Which function is easiest to reuse in another file?
+- Where did parameters make your code cleaner?
+- Which task used return values most effectively?
