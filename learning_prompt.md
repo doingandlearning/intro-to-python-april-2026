@@ -21,3 +21,17 @@ Before I write this from scratch, can you help me understand my options?
 4. What should I search for if I want to learn more — what are the right terms to use?
 
 Don't write the code for me yet. I just want to understand my options first.
+
+# Prompt 3: Match an Existing Codebase Style
+
+I'm working on an existing Python project and I need to understand the style and conventions it uses before I add to it.
+Here is some existing code from the project:
+[PASTE YOUR CODE HERE]
+Please help me understand:
+
+1. What coding style and conventions is this codebase following? (e.g. naming, structure, formatting)
+2. Are there any patterns being used that I should know about before I add to it? (e.g. how errors are handled, how functions are structured)
+3. What should I be careful not to break or contradict when I write new code?
+4. If I wanted to add [DESCRIBE YOUR NEW FEATURE], what would "in the style of this codebase" look like — without writing it for me?
+
+I want to fit in with what's already there, not impose my own style on top of it.
