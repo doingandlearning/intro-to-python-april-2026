@@ -1,116 +1,125 @@
-# 🧪 Lab 11: Working with CSV Files
+# Lab 11: Working with CSV Files
 
----
+This lab focuses on writing and reading CSV data using the `csv` module.
 
-## 🎯 Objective
+You will practise:
 
-You’ll simulate storing a series of temperature readings taken from a sensor into a **CSV file**, then read the data back and display it.
+- storing tabular data with tuples
+- writing rows with `csv.writer`
+- reading rows with `csv.reader`
+- converting CSV strings back to useful types
 
 ---
 
 ## Hints and Tips
 
-- Keep a consistent order for each reading field.
-- Use one function to write, one function to read.
-- Remember that `csv.reader` returns strings for every column.
-- Convert numeric values after reading if you need numeric operations.
+- Keep a fixed column order for every row.
+- Use one function for writing and one for reading.
+- Remember: `csv.reader` returns strings for every column.
+- Convert values (for example temperature) after reading.
+- Use `newline=""` when opening CSV files.
 
 ---
 
-## 📍Part 1: Write to a CSV File
+## Task 1: Create Reading Data
 
-### Step 1: Create a Structure for the Readings
+Create a tuple of tuples called `readings`.
 
-Use a **tuple of tuples** to represent temperature data. Each reading should include:
+Each reading should contain:
 
-- A **float** temperature
-- A **date string** (e.g., `'04/05/23'`)
-- A **time string** (e.g., `'12:00'`)
-- A **scale** (e.g., `'Celsius'`)
+1. temperature (float)
+2. date string (`YYYY-MM-DD`)
+3. time string (`HH:MM`)
+4. scale (`"Celsius"`)
 
-📝 Prompt:
-Create 5 such readings and store them in a single data structure.
-
----
-
-### Step 2: Define a Function to Write CSV
-
-Write a function that:
-
-- Accepts a filename and the data structure
-- Writes the data to a CSV file (1 row per reading)
-- Uses `csv.writer`
-
-📝 Prompt:
-What mode do you open the file in?
-How do you separate rows?
-What should each line contain?
-
----
-
-### Step 3: Run Your Function
-
-- Call your function with the tuple of readings
-- Open the resulting CSV file in PyCharm or a text editor to confirm
-
----
-
-## 📍Part 2 (Extension): Read Back the File
-
-### Step 1: Use `csv.reader`
-
-Write a second part of the program that:
-
-- Opens the file you just wrote
-- Uses `csv.reader` to load each row
-- Converts the result into a new tuple of tuples (or a list of tuples if you prefer)
-
-### Step 2: Print the Result
-
-- Print each reading on a separate line
-- Try formatting the output so it's easy to read
-
-📝 Prompt:
-Remember: all values read from a CSV are strings.
-What do you need to convert?
-How do you rebuild a tuple from a row?
-
----
-
-## 🧠 Optional Stretch
-
-- Add a header row (e.g., `['Temperature', 'Date', 'Time', 'Scale']`)
-- Validate that all rows have the correct number of columns before printing
-- Add input() to let the user name the file
-
----
+Create at least 5 readings.
 
 <details>
-<summary>Example solution code</summary>
+<summary>Solution (Task 1)</summary>
+
+```python
+readings = (
+    (21.1, "2026-04-21", "12:00", "Celsius"),
+    (21.4, "2026-04-21", "12:05", "Celsius"),
+    (21.0, "2026-04-21", "12:10", "Celsius"),
+    (20.8, "2026-04-21", "12:15", "Celsius"),
+    (21.2, "2026-04-21", "12:20", "Celsius"),
+)
+```
+
+</details>
+
+---
+
+## Task 2: Write Readings to CSV
+
+Write a function:
+
+`write_csv(filename, data)`
+
+Rules:
+
+1. Open with `with open(filename, "w", newline="")`.
+2. Use `csv.writer`.
+3. Write one row per reading tuple.
+
+Call the function with your `readings` data.
+
+<details>
+<summary>Solution (Task 2)</summary>
 
 ```python
 import csv
 
 
-readings = (
-    (21.1, '04/05/23', '12:00', 'Celsius'),
-    (21.4, '04/05/23', '12:05', 'Celsius'),
-    (21.0, '04/05/23', '12:10', 'Celsius'),
-    (20.8, '04/05/23', '12:15', 'Celsius'),
-    (21.2, '04/05/23', '12:20', 'Celsius'),
-)
-
-
 def write_csv(filename, data):
-    with open(filename, 'w', newline='') as f:
+    with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
         for row in data:
             writer.writerow(row)
 
 
+readings = (
+    (21.1, "2026-04-21", "12:00", "Celsius"),
+    (21.4, "2026-04-21", "12:05", "Celsius"),
+    (21.0, "2026-04-21", "12:10", "Celsius"),
+    (20.8, "2026-04-21", "12:15", "Celsius"),
+    (21.2, "2026-04-21", "12:20", "Celsius"),
+)
+
+write_csv("temperature_readings.csv", readings)
+```
+
+</details>
+
+---
+
+## Task 3: Read CSV Back Into Tuples
+
+Write a function:
+
+`read_csv(filename)`
+
+Rules:
+
+1. Open with `with open(filename, "r", newline="")`.
+2. Use `csv.reader`.
+3. Convert temperature to `float`.
+4. Store each row as a tuple.
+5. Return all rows as a tuple of tuples.
+
+Then print each reading on a new line.
+
+<details>
+<summary>Solution (Task 3)</summary>
+
+```python
+import csv
+
+
 def read_csv(filename):
     loaded = []
-    with open(filename, 'r', newline='') as f:
+    with open(filename, "r", newline="") as f:
         reader = csv.reader(f)
         for row in reader:
             temp = float(row[0])
@@ -121,12 +130,54 @@ def read_csv(filename):
     return tuple(loaded)
 
 
-filename = 'temperature_readings.csv'
-write_csv(filename, readings)
-loaded_readings = read_csv(filename)
-
+loaded_readings = read_csv("temperature_readings.csv")
 for reading in loaded_readings:
     print(reading)
 ```
 
 </details>
+
+---
+
+## Task 4 (Optional): Add a Header Row
+
+Update your writer and reader so that:
+
+1. The first row is a header:
+   `["temperature", "date", "time", "scale"]`
+2. The reader skips that first row before processing data.
+
+<details>
+<summary>Solution (Task 4 Optional)</summary>
+
+```python
+import csv
+
+
+def write_csv_with_header(filename, data):
+    with open(filename, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(["temperature", "date", "time", "scale"])
+        for row in data:
+            writer.writerow(row)
+
+
+def read_csv_with_header(filename):
+    loaded = []
+    with open(filename, "r", newline="") as f:
+        reader = csv.reader(f)
+        next(reader)  # skip header
+        for row in reader:
+            loaded.append((float(row[0]), row[1], row[2], row[3]))
+    return tuple(loaded)
+```
+
+</details>
+
+---
+
+## Reflection
+
+- Why does CSV reading return strings, even for numbers?
+- Where did type conversion matter most?
+- When is CSV a better choice than plain text logs?
