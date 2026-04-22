@@ -1,0 +1,8 @@
+monitor_id,timestamp,beam_energy_gev,position_mm,status
+BPM-A1,2024-03-12 06:00:00,6500.0,-0.12,nominal
+BPM-A2,2024-03-12 06:00:00,6500.0,0.45,nominal
+BPM-B1,2024-03-12 06:00:00,6499.8,2.31,warning
+BPM-A1,2024-03-12 07:00:00,6500.1,-0.09,nominal
+BPM-A2,2024-03-12 07:00:00,6500.0,3.87,warning
+BPM-B1,2024-03-12 07:00:00,6499.7,0.11,nominal
+BPM-A1,2024-03-12 08:00:00,6500.2,4.52,warning
