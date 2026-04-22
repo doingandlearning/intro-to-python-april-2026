@@ -1,0 +1,3 @@
+from utils.printing import print_message_with_borders
+
+print_message_with_borders()

@@ -1,0 +1,8 @@
+,monitor_id,is_deviation,position_mm
+6,BPM-A1,True,4.52
+4,BPM-A2,True,3.87
+2,BPM-B1,True,2.31
+1,BPM-A2,False,0.45
+5,BPM-B1,False,0.11
+3,BPM-A1,False,-0.09
+0,BPM-A1,False,-0.12
